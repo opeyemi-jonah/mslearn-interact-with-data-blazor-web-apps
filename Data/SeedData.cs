@@ -4,7 +4,7 @@ public static class SeedData
 {
     public static void Initialize(PizzaStoreContext db)
     {
-        var specials = new PizzaSpecial[]
+        var zaspecials = new PizzaSpecial[]
         {
             new PizzaSpecial()
             {
@@ -62,7 +62,7 @@ public static class SeedData
                 ImageUrl = "img/pizzas/margherita.jpg",
             },
         };
-        db.Specials.AddRange(specials);
+        db.Specials.AddRange(zaspecials);
         db.SaveChanges();
     }
 }

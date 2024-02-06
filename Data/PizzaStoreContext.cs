@@ -9,5 +9,5 @@ public class PizzaStoreContext : DbContext
 
     }
     public DbSet<PizzaSpecial> Specials {get; set;}
-    public DbSet<Pizza> Pizzas {get; set;}
+    // public DbSet<Pizza> Pizzas {get; set;}
 }

@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 // Register the pizzas service
-builder.Services.AddSingleton<PizzaService>();
+builder.Services.AddScoped<PizzaService>();
 
 builder.Services.AddHttpClient();
   builder.Services.AddSqlite<PizzaStoreContext>("Data Source=pizza.db");
@@ -23,6 +23,7 @@ app.UseRouting();
 app.MapRazorPages();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
+app.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 
 var scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
 using (var scope = scopeFactory.CreateScope())
