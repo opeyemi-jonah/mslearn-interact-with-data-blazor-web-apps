@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazingPizza.Data
+namespace BlazingPizza.Services
 {
     public class PizzaService
     {

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace BlazingPizza.Data;
+namespace BlazingPizza.Services;
 
 public class PizzaStoreContext : DbContext
 {
