@@ -1,0 +1,21 @@
+@page "/test"
+
+@inject NavigationManager NavManager
+
+<h1>Buy a Pizza</h1>
+
+<p>I want to order a: @PizzaName</p>
+
+<NavLink href=@HomePageURI Match="NavLinkMatch.All">Home Page</NavLink>
+
+@code {
+	[Parameter]
+	public string PizzaName { get; set; }
+	
+	public string HomePageURI { get; set; }
+	
+	protected override void OnInitialized()
+	{
+		HomePageURI = NavManager.BaseUri;
+	}
+}
