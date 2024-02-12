@@ -1,21 +1,36 @@
 @page "/test"
-
+@using Microsoft.AspNetCore.WebUtilities
 @inject NavigationManager NavManager
 
-<h1>Buy a Pizza</h1>
+<div class="top-bar">
+	<NavLink href=@HomePageURI Match="NavLinkMatch.All">Home Page</NavLink>
+	<NavLink href=@ToppingName >Topping</NavLink>
+</div>
 
-<p>I want to order a: @PizzaName</p>
+<div class="main">
+	<h1>Buy a Pizza</h1>
+	<p>I want to order a: @PizzaName</p>
 
-<NavLink href=@HomePageURI Match="NavLinkMatch.All">Home Page</NavLink>
+	<p>Topping name: @ToppingName</p>
+</div>
+
+
+
 
 @code {
 	[Parameter]
 	public string PizzaName { get; set; }
-	
+
 	public string HomePageURI { get; set; }
-	
+	public string ToppingName { get; set; }
 	protected override void OnInitialized()
 	{
 		HomePageURI = NavManager.BaseUri;
+
+		var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
+		if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("extratopping", out var extraTopping))
+		{
+			ToppingName = System.Convert.ToString(extraTopping);
+		}
 	}
 }
