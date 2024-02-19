@@ -14,42 +14,13 @@
     </NavLink>
 </div>
 
-@* <div class="main">
-    <div class="checkout-cols">
-        <div class="checkout-order-details">
-            <h4>Review order</h4>
-            @foreach (var pizza in Order.Pizzas)
-            {
-                <p>
-                    <strong>
-                        @(pizza.Size)"
-                        @pizza.Special.Name
-                        ($@pizza.GetFormattedTotalPrice())
-                    </strong>
-                </p>
-            }
-
-            <p>
-                <strong>
-                    Total price:
-                    $@Order.GetFormattedTotalPrice()
-                </strong>
-            </p>
-        </div>
-    </div>
-
-    <button class="checkout-button btn btn-warning" @onclick="PlaceOrder" disabled=@isSubmitting>
-        Place order
-    </button>
-</div> *@
-
 @foreach (var pizza in Order.Pizzas)
 {
     <p>
         <strong>
             @(pizza.Size)"
             @pizza.Special.Name
-            (£@pizza.GetFormattedTotalPrice())
+            ($@pizza.GetFormattedTotalPrice())
         </strong>
     </p>
 }
@@ -57,7 +28,7 @@
 <p>
     <strong>
         Total price:
-        £@Order.GetFormattedTotalPrice()
+        $@Order.GetFormattedTotalPrice()
     </strong>
 </p>
 
