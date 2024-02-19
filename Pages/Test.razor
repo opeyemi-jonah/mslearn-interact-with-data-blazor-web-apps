@@ -1,36 +1,41 @@
 @page "/test"
 @using Microsoft.AspNetCore.WebUtilities
 @inject NavigationManager NavManager
+@inject IJSRuntime JS
 
-<div class="top-bar">
-	<NavLink href=@HomePageURI Match="NavLinkMatch.All">Home Page</NavLink>
-	<NavLink href=@ToppingName >Topping</NavLink>
+<div @onclick="HandleDivClick">
+    <button class="btn btn-primary" @onclick="IncrementCount" @onclick:stopPropagation>Click me</button>
+    <input value=@data @onkeypress="ProcessKeyPress" @onkeypress:preventDefault />
 </div>
-
-<div class="main">
-	<h1>Buy a Pizza</h1>
-	<p>I want to order a: @PizzaName</p>
-
-	<p>Topping name: @ToppingName</p>
-</div>
-
-
-
 
 @code {
-	[Parameter]
-	public string PizzaName { get; set; }
 
-	public string HomePageURI { get; set; }
-	public string ToppingName { get; set; }
-	protected override void OnInitialized()
-	{
-		HomePageURI = NavManager.BaseUri;
+    private ElementReference InputField;
+    private string data;
+    private int currentCount = 0;
 
-		var uri = NavManager.ToAbsoluteUri(NavManager.Uri);
-		if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("extratopping", out var extraTopping))
-		{
-			ToppingName = System.Convert.ToString(extraTopping);
-		}
-	}
+    private async Task ChangeFocus()
+    {
+        await InputField.FocusAsync();
+    }
+
+    private async Task HandleFocus()
+    {
+        data = "Received focus";
+    }
+    private async Task HandleDivClick()
+    {
+        await JS.InvokeVoidAsync("alert", "Div click");
+    }
+
+    private async Task ProcessKeyPress(KeyboardEventArgs e)
+    {
+        // Omitted for brevity
+    }
+
+
+    private void IncrementCount(MouseEventArgs e)
+    {
+        // Omitted for brevity
+    }
 }
